@@ -6,17 +6,24 @@
   "dependencies": {
     "@nativescript/core": "~8.8.0",
     "@nativescript/local-notifications": "^6.1.1",
-    "nativescript-sqlite": "^2.8.6",
-    "@nativescript/chart": "^0.0.6",
-    "date-fns": "^2.30.0"
+    "date-fns": "^2.30.0",
+    "nativescript-sqlite": "^2.8.6"
   },
   "devDependencies": {
-    "@nativescript/preview-cli": "1.0.13",
+    "@nativescript/android": "8.8.0",
+    "@nativescript/ios": "8.8.0",
+    "@nativescript/preview-cli": "^1.0.14",
     "@nativescript/stackblitz": "0.0.8",
     "@nativescript/tailwind": "^2.1.0",
     "@nativescript/types-minimal": "~8.8.0",
     "@nativescript/webpack": "~5.0.0",
     "tailwindcss": "~3.4.0",
     "typescript": "~5.4.0"
+  },
+  "scripts": {
+    "android": "ns run android",
+    "ios": "ns run ios",
+    "preview": "ns preview",
+    "dev": "ns preview"
   }
 }

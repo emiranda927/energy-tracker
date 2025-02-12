@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.progress-bar {
+  height: 8;
+  background: #e2e8f0;
+  color: #3b82f6;
+  border-radius: 4;
+}

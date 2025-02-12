@@ -4,7 +4,7 @@ import { notifications } from './services/notifications.service';
 import { getEnergyCategory } from './models/energy-entry';
 import { format } from 'date-fns';
 
-export class EnergyTrackerModel extends Observable {
+export class HelloWorldModel extends Observable {
   private _energyLevel: number = 50;
   private _energyCategory: string = '';
   private _notes: string = '';
@@ -125,7 +125,6 @@ export class EnergyTrackerModel extends Observable {
       level: entry.level
     }));
 
-    // Calculate statistics
     if (entries.length > 0) {
       const levels = entries.map(e => e.level);
       const avg = levels.reduce((a, b) => a + b, 0) / levels.length;

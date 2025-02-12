@@ -21,16 +21,21 @@
             <Button text="Save Entry" tap="{{ saveEntry }}" class="bg-blue-500 text-white p-4 rounded" />
 
             <Label text="Today's Energy" class="text-xl font-bold mt-8 mb-4" />
-            <GridLayout height="300">
-                <CartesianChart cache-mode="none">
-                    <LineSeries items="{{ todayEntries }}"
-                              categoryProperty="time"
-                              valueProperty="level">
-                        <LineSeries.valueAxis>
-                            <LinearAxis minimum="0" maximum="100" />
-                        </LineSeries.valueAxis>
-                    </LineSeries>
-                </CartesianChart>
+            
+            <!-- Simple visualization using labels -->
+            <GridLayout rows="auto" columns="*" class="bg-white p-4 rounded">
+                <StackLayout>
+                    <Repeater items="{{ todayEntries }}">
+                        <Repeater.itemTemplate>
+                            <GridLayout columns="*, auto" class="p-2">
+                                <Label col="0" text="{{ time }}" class="text-sm" />
+                                <StackLayout col="1" class="w-32">
+                                    <Progress value="{{ level }}" maxValue="100" class="progress-bar" />
+                                </StackLayout>
+                            </GridLayout>
+                        </Repeater.itemTemplate>
+                    </Repeater>
+                </StackLayout>
             </GridLayout>
 
             <GridLayout rows="auto" columns="*, *, *" class="mt-4 bg-white p-4 rounded">
