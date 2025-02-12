@@ -1,0 +1,74 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo" class="bg-gray-100">
+    <ActionBar title="Energy Statistics" class="bg-blue-500 text-white">
+        <NavigationButton text="Back" android.systemIcon="ic_menu_back" />
+        <ActionItem tap="{{ exportData }}" ios.position="right" android.position="actionBar">
+            <Label text="Export" class="text-white p-2" />
+        </ActionItem>
+    </ActionBar>
+
+    <ScrollView>
+        <StackLayout class="p-4">
+            <SegmentedBar selectedIndex="{{ timeRangeIndex }}" class="mb-4">
+                <SegmentedBar.items>
+                    <SegmentedBarItem title="Week" />
+                    <SegmentedBarItem title="Month" />
+                    <SegmentedBarItem title="Year" />
+                </SegmentedBar.items>
+            </SegmentedBar>
+
+            <GridLayout rows="auto" columns="auto, *" class="mb-4">
+                <Button text="←" tap="{{ previousPeriod }}" class="w-12" col="0" />
+                <Label text="{{ periodLabel }}" class="text-lg font-bold text-center" col="1" />
+                <Button text="→" tap="{{ nextPeriod }}" class="w-12" col="2" />
+            </GridLayout>
+
+            <GridLayout height="300" class="mb-8">
+                <CartesianChart cache-mode="none">
+                    <LineSeries items="{{ periodEntries }}"
+                              categoryProperty="time"
+                              valueProperty="level">
+                        <LineSeries.valueAxis>
+                            <LinearAxis minimum="0" maximum="100" />
+                        </LineSeries.valueAxis>
+                    </LineSeries>
+                </CartesianChart>
+            </GridLayout>
+
+            <GridLayout rows="auto, auto, auto" columns="*, *" class="bg-white p-4 rounded-lg mb-4">
+                <Label text="Average Energy" class="text-lg" row="0" col="0" />
+                <Label text="{{ averageEnergy }}" class="text-lg font-bold text-right" row="0" col="1" />
+                
+                <Label text="Peak Energy" class="text-lg" row="1" col="0" />
+                <Label text="{{ peakEnergy }}" class="text-lg font-bold text-right" row="1" col="1" />
+                
+                <Label text="Lowest Energy" class="text-lg" row="2" col="0" />
+                <Label text="{{ lowestEnergy }}" class="text-lg font-bold text-right" row="2" col="1" />
+            </GridLayout>
+
+            <GridLayout height="200" class="mb-8">
+                <CartesianChart cache-mode="none">
+                    <BarSeries items="{{ categoryDistribution }}"
+                             categoryProperty="category"
+                             valueProperty="count">
+                        <BarSeries.valueAxis>
+                            <LinearAxis />
+                        </BarSeries.valueAxis>
+                    </BarSeries>
+                </CartesianChart>
+            </GridLayout>
+
+            <Label text="Time of Day Analysis" class="text-xl font-bold mb-4" />
+            <GridLayout height="200">
+                <CartesianChart cache-mode="none">
+                    <LineSeries items="{{ timeOfDayAnalysis }}"
+                              categoryProperty="hour"
+                              valueProperty="average">
+                        <LineSeries.valueAxis>
+                            <LinearAxis minimum="0" maximum="100" />
+                        </LineSeries.valueAxis>
+                    </LineSeries>
+                </CartesianChart>
+            </GridLayout>
+        </StackLayout>
+    </ScrollView>
+</Page>
